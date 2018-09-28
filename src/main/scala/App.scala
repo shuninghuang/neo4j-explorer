@@ -1,4 +1,5 @@
 import org.neo4j.driver.v1.{AuthTokens, Driver, GraphDatabase, Session}
+import org.apache.spark.sql.SparkSession
 import java.sql.{Connection, DriverManager, ResultSet}
 
 import com.google.gson.stream.JsonReader
