@@ -1,11 +1,11 @@
-package models
+package main.models
 
 import org.joda.time.DateTime
 import org.json4s.jackson.Json
 
 case class Log(
               source: String,
-              created_at: DateTime,
+              created_at: String,
               id_log: String,
               id_parent_log: Option[String],
               username: Option[String],
@@ -14,16 +14,15 @@ case class Log(
               feedback: Option[Boolean],
               session_id: Option[String],
               ip: Option[String],
-              predefined_options: Option[Json],
+              predefined_options: Option[String],
               answer: Option[String]
           ) {
-  val connector = new App {}
   def to_nodes(): Unit = {
     def parseQA: Unit = {
       feedback match {
         case Some(fb) => id_parent_log match {
           case Some(parent_id) => {
-            val last_node = new App() s"get last node by $parent_id%s"
+            val last_node = s"get last node by $parent_id%s"
             last_node match {
               case "answer" =>
                 val q = "find query by answer's parent id"
